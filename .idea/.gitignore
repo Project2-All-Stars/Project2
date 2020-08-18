@@ -1,0 +1,27 @@
+# Compiled class file
+*.class
+../target/
+
+# Log file
+*.log
+
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# idea files
+/encodings.xml
+/uiDesigner.xml
+
+# File-based project format
+*.iws
+*.DS_Store
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
