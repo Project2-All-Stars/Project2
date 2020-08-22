@@ -1,6 +1,6 @@
 package com.rev.dao;
 
-import com.rev.model.AbsenceModel;
+import com.rev.model.Absence;
 
-public interface AbsenceRepository extends GenericRepository<AbsenceModel> {
+public interface AbsenceRepository extends GenericRepository<Absence> {
 }

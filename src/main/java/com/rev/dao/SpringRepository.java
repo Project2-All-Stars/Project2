@@ -17,7 +17,7 @@ import java.util.List;
 abstract class SpringRepository<T> implements GenericRepository<T> {
 
     protected final static Logger log = Logger.getLogger(SpringRepository.class.getName());
-    protected SessionFactory sessionFactory;
+    public SessionFactory sessionFactory;
 
     //horrible, no good, bad code using reflections, this wont work if T doesn't have a super class but were working on a DAO so.....
     private Class<T> getType(){

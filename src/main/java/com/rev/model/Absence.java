@@ -5,7 +5,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "absences")
-public class AbsenceModel {
+public class Absence {
 
     @Id
     @Column(columnDefinition = "serial primary key")
@@ -16,14 +16,14 @@ public class AbsenceModel {
     private Date date;
     private int excuse_id;
 
-    AbsenceModel(){}
+    Absence(){}
 
-    AbsenceModel(int student_id, Date date){
+    Absence(int student_id, Date date){
         this.student_id = student_id;
         this.date = date;
     }
 
-    AbsenceModel(int student_id, Date date, int excuse_id){
+    Absence(int student_id, Date date, int excuse_id){
         this.student_id = student_id;
         this.date = date;
         this.excuse_id = excuse_id;

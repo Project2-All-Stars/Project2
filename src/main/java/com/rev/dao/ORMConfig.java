@@ -44,7 +44,7 @@ public class ORMConfig {
     public LocalSessionFactoryBean sessionFactoryBean(DataSource ds) {
         LocalSessionFactoryBean sfBean = new LocalSessionFactoryBean();
         sfBean.setDataSource(ds);
-        sfBean.setPackagesToScan("com.ex.models");
+        sfBean.setPackagesToScan("com.rev.model");
         sfBean.setHibernateProperties(getSfProps());
         return sfBean;
     }
