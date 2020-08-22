@@ -16,20 +16,27 @@ public class AbsenceModel {
     private Date date;
     private int excuse_id;
 
-    AbsenceModel(){}
-
-    AbsenceModel(int student_id, Date date){
+    public AbsenceModel(int student_id, Date date){
         this.student_id = student_id;
         this.date = date;
     }
 
-    AbsenceModel(int student_id, Date date, int excuse_id){
+    public AbsenceModel(int student_id, Date date, int excuse_id){
         this.student_id = student_id;
         this.date = date;
         this.excuse_id = excuse_id;
     }
+    
+    
 
-    public int getAid() {
+    public AbsenceModel(int aid, int student_id, Date date, int excuse_id) {
+		this.aid = aid;
+		this.student_id = student_id;
+		this.date = date;
+		this.excuse_id = excuse_id;
+	}
+
+	public int getAid() {
         return aid;
     }
 
