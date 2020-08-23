@@ -1,5 +1,6 @@
-package com.rev.dao;
+package com.rev.dao.spring;
 
+import com.rev.dao.GenericRepository;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,9 +13,13 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+/**
+ * @author Trevor
+ * @param <T> What model do we expect to return from this
+ */
 @Repository
 @Transactional
-abstract class SpringRepository<T> implements GenericRepository<T> {
+public abstract class SpringRepository<T> implements GenericRepository<T> {
 
     protected final static Logger log = Logger.getLogger(SpringRepository.class.getName());
     public SessionFactory sessionFactory;
@@ -46,8 +51,14 @@ abstract class SpringRepository<T> implements GenericRepository<T> {
     @Transactional(isolation = Isolation.READ_COMMITTED, readOnly=true)
     @Override
     public T findById(Serializable id) {
-        Session session = sessionFactory.getCurrentSession();
-        return (T)session.get(getType(), id);
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            return (T)session.get(getType(), id);
+        }
+        catch (Exception e){
+            log.error("Find call failed at id: " + id, e);
+        }
+        return null;
     }
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
@@ -59,7 +70,7 @@ abstract class SpringRepository<T> implements GenericRepository<T> {
             return true;
         }
         catch (Exception e){
-            log.error("Update call failed", e);
+            log.error("Update call failed for: " + t.toString(), e);
         }
         return false;
     }
@@ -73,7 +84,7 @@ abstract class SpringRepository<T> implements GenericRepository<T> {
             return true;
         }
         catch (Exception e){
-            log.error("Delete call failed", e);
+            log.error("Delete call failed at id: " + id, e);
         }
         return false;
     }
