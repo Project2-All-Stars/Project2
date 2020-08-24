@@ -23,7 +23,7 @@ public class Student {
     private Teacher homeRoomTeacher;
 
     @Lob
-    @Column(columnDefinition="bytea")
+    @Column(columnDefinition="oid")
     private byte[] picture;
 
     @Column(nullable = false)

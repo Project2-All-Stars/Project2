@@ -1,15 +1,15 @@
 package com.rev.dao.spring;
 
-import com.rev.dao.AbsenceRepository;
-import com.rev.model.Absence;
+import com.rev.dao.TeacherRepository;
+import com.rev.model.Teacher;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AbsenceSpringRepository extends SpringRepository<Absence> implements AbsenceRepository {
+public class TeacherSpringRepository extends SpringRepository<Teacher> implements TeacherRepository {
     @Autowired
-    public AbsenceSpringRepository(SessionFactory sf){
+    public TeacherSpringRepository(SessionFactory sf){
         super(sf);
     }
 }

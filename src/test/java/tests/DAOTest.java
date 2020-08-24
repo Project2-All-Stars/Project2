@@ -3,8 +3,7 @@ package tests;
 import com.rev.dao.*;
 import com.rev.dao.spring.ExcuseSpringRepository;
 import com.rev.dao.spring.SpringRepository;
-import com.rev.model.Absence;
-import com.rev.model.Excuse;
+import com.rev.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Assert;
@@ -31,9 +30,15 @@ public class DAOTest {
 
     @Autowired
     private ExcuseRepository excuseDao;
+    @Autowired
+    private StudentRepository studentDao;
+    @Autowired
+    private TeacherRepository teacherDao;
+    @Autowired
+    private RoomRepository roomDao;
 
     @Test
-    @Transactional
+    @Transactional(readOnly = true)
     public void connectionTest(){
         Session s = sessionFactory.getCurrentSession();
         Assert.assertTrue(s.isConnected());
@@ -88,5 +93,25 @@ public class DAOTest {
         Assert.assertEquals(null, excuseDao.findById(id));
         Assert.assertFalse(excuseDao.update(excuseToUpdate));
         Assert.assertFalse(excuseDao.deleteById(id));
+    }
+
+    //tests foreign keys, oneToOne, and oneToMany
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void CreateStudentsTeacherRoomAndGetNumStudents(){
+        Room room = new Room("Chem lab");
+        Serializable rid = roomDao.save(room);
+        Teacher teacher = new Teacher("Tea", "Cher", roomDao.findById(rid));
+        Serializable tid = teacherDao.save(teacher);
+        Student student1 = new Student("John", "Doe", teacherDao.findById(tid), 9);
+        Student student2 = new Student("Jane", "Doe", teacherDao.findById(tid), 10);
+        studentDao.save(student1);
+        studentDao.save(student2);
+
+        Teacher sad = teacherDao.findById(tid);
+
+        Assert.assertNotEquals(null, teacherDao.findById(tid).getStudents());
+        Assert.assertEquals(2, roomDao.findById(rid).getNumSeats());
     }
 }
