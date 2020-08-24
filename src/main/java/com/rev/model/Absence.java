@@ -16,14 +16,14 @@ public class Absence {
     private Date date;
     private int excuse_id;
 
-    Absence(){}
+    public Absence(){}
 
-    Absence(int student_id, Date date){
+    public Absence(int student_id, Date date){
         this.student_id = student_id;
         this.date = date;
     }
 
-    Absence(int student_id, Date date, int excuse_id){
+    public Absence(int student_id, Date date, int excuse_id){
         this.student_id = student_id;
         this.date = date;
         this.excuse_id = excuse_id;

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-abstract class SpringRepository<T> implements GenericRepository<T> {
+public class SpringRepository<T> implements GenericRepository<T> {
 
     protected final static Logger log = Logger.getLogger(SpringRepository.class.getName());
     public SessionFactory sessionFactory;
