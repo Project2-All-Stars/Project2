@@ -57,28 +57,42 @@ public class AbsenceController {
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<String> getAbsenceById(@PathVariable int id){
+        System.out.println("ID: " + id);
         Absence a = absenceRepository.findById(id);
         return a == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) :
                 new ResponseEntity<>(gson.toJson(a, Absence.class), HttpStatus.OK);
     }
-//
-//    /**
-//     *
-//     * @param id
-//     * @param absence
-//     * @return
-//     */
-//    @PutMapping(path = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public ResponseEntity<String> updateAbsence(@PathVariable int id, @RequestBody String absence){
-//        Absence a = absenceRepository.findById(id);
-//        if (a == null)
-//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//
-//        a = gson.fromJson(absence, Absence.class);
-//        a.setAid(id);
-//        return absenceRepository.update(a) ? new ResponseEntity<>(null, HttpStatus.OK) :
-//            new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+
+    /**
+     *
+     * @param id
+     * @param absence
+     * @return
+     */
+    @PutMapping(path = "/p/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<String> updateAbsence(@PathVariable int id, @RequestBody String absence){
+        Absence a = absenceRepository.findById(id);
+        if (a == null)
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        a = gson.fromJson(absence, Absence.class);
+        a.setAid(id);
+        return absenceRepository.update(a) ? new ResponseEntity<>(null, HttpStatus.OK) :
+            new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     *
+     * @param absence
+     * @return
+     */
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> addAbsence(@RequestBody String absence) {
+        Absence a = gson.fromJson(absence, Absence.class);
+        Absence newAbsence = (Absence) absenceRepository.save(a);
+        return newAbsence != null ? new ResponseEntity<>(gson.toJson(newAbsence), HttpStatus.OK) :
+                new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }
