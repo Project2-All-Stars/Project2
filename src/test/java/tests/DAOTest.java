@@ -52,7 +52,7 @@ public class DAOTest {
     @Rollback(true)
     public void createExcuseAndGetById(){
         Serializable id = excuseDao.save(new Excuse("Funeral"));
-        Assert.assertEquals("Funeral", excuseDao.findById(id).getExcuse_type());
+        Assert.assertEquals("Funeral", excuseDao.findById(id).getExcuseType());
     }
 
     @Test
@@ -61,9 +61,9 @@ public class DAOTest {
     public void createExcuseAndUpdate(){
         Serializable id = excuseDao.save(new Excuse("Dental appointment"));
         Excuse excuseToUpdate = excuseDao.findById(id);
-        excuseToUpdate.setExcuse_type("Dentist appointment");
+        excuseToUpdate.setExcuseType("Dentist appointment");
         excuseDao.update(excuseToUpdate);
-        Assert.assertEquals("Dentist appointment", excuseDao.findById(id).getExcuse_type());
+        Assert.assertEquals("Dentist appointment", excuseDao.findById(id).getExcuseType());
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DAOTest {
         //create and delete entity to ensure id is empty
         Serializable id = excuseDao.save(new Excuse("Slept in"));
         Excuse excuseToUpdate = excuseDao.findById(id);
-        excuseToUpdate.setExcuse_type("Sick");
+        excuseToUpdate.setExcuseType("Sick");
         excuseDao.deleteById(id);
 
         Assert.assertEquals(null, excuseDao.findById(id));

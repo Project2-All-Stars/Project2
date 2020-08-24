@@ -12,27 +12,29 @@ public class Absence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int aid;
 
-    @Column(nullable = false)
-    private int student_id;
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="student_id", referencedColumnName="sid", columnDefinition="int4", nullable = false)
+    private Student student;
 
     @Column(nullable = false)
     private Date date;
 
-    private int excuse_id;
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="excuse_id", referencedColumnName="eid", columnDefinition="int4")
+    private Excuse excuse;
 
-    public Absence(){}
-
-    public Absence(int student_id, Date date){
-        this.student_id = student_id;
+    public Absence(Student student, Date date){
+        this.student = student;
         this.date = date;
     }
 
-    public Absence(int student_id, Date date, int excuse_id){
-        this.student_id = student_id;
+    public Absence(Student student, Date date, Excuse excuse){
+        this.student = student;
         this.date = date;
-        this.excuse_id = excuse_id;
+        this.excuse = excuse;
     }
 
+    //region Getters and Setters
     public int getAid() {
         return aid;
     }
@@ -41,12 +43,12 @@ public class Absence {
         this.aid = aid;
     }
 
-    public int getStudent_id() {
-        return student_id;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Date getDate() {
@@ -57,21 +59,22 @@ public class Absence {
         this.date = date;
     }
 
-    public int getExcuse_id() {
-        return excuse_id;
+    public Excuse getExcuse() {
+        return excuse;
     }
 
-    public void setExcuse_id(int excuse_id) {
-        this.excuse_id = excuse_id;
+    public void setExcuse(Excuse excuse) {
+        this.excuse = excuse;
     }
+    //endregion
 
     @Override
     public String toString() {
         return "AbsenceModel{" +
                 "aid=" + aid +
-                ", student_id=" + student_id +
+                ", student_id=" + student.getId() +
                 ", date=" + date +
-                ", excuse_id=" + excuse_id +
+                ", excuse_id=" + excuse.getId() +
                 '}';
     }
 }

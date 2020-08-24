@@ -15,27 +15,27 @@ public class Excuse {
     @Column(nullable = false)
     private String excuse_type;
 
-    public Excuse(){}
-
     public Excuse(String excuse_type) {
         this.excuse_type = excuse_type;
     }
 
-    public int getEid() {
+    //region Getters and Setters
+    public int getId() {
         return eid;
     }
 
-    public void setEid(int eid) {
+    public void setId(int eid) {
         this.eid = eid;
     }
 
-    public String getExcuse_type() {
+    public String getExcuseType() {
         return excuse_type;
     }
 
-    public void setExcuse_type(String excuse_type) {
+    public void setExcuseType(String excuse_type) {
         this.excuse_type = excuse_type;
     }
+    //endregion
 
     @Override
     public String toString() {

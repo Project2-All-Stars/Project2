@@ -1,7 +1,6 @@
 package com.rev.dao.spring;
 
 import com.rev.dao.AbsenceRepository;
-import com.rev.dao.spring.SpringRepository;
 import com.rev.model.Absence;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
