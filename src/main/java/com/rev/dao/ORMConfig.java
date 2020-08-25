@@ -61,7 +61,7 @@ public class ORMConfig {
         props.setProperty("hibernate.dialect", dbDialect);
         props.setProperty("hibernate.show_sql", "true");
         props.setProperty("hibernate.format_sql", "true");
-        props.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        props.setProperty("hibernate.hbm2ddl.auto", "update");
 
         return props;
     }

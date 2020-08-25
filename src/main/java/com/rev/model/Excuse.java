@@ -15,6 +15,8 @@ public class Excuse {
     @Column(nullable = false)
     private String excuse_type;
 
+    public Excuse() { }
+
     public Excuse(String excuse_type) {
         this.excuse_type = excuse_type;
     }

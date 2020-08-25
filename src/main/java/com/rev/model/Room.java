@@ -16,6 +16,8 @@ public class Room {
     @OneToOne(mappedBy = "homeRoom")
     private Teacher teacher;
 
+    public Room() { }
+
     public Room(String rname) {
         this.rname = rname;
     }

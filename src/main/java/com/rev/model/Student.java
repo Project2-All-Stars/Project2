@@ -29,8 +29,10 @@ public class Student {
     @Column(nullable = false)
     private int grade;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private Set<Absence> absences;
+
+    public Student() { }
 
     public Student(String fname, String lname, Teacher homeRoomTeacher, int grade) {
         this.fname = fname;

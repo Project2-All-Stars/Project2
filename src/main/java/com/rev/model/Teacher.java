@@ -19,11 +19,13 @@ public class Teacher {
     private String lname;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tid", referencedColumnName = "rid", nullable = false)
+    @JoinColumn(name = "tid", referencedColumnName = "rid")
     private Room homeRoom;
 
-    @OneToMany(mappedBy = "homeRoomTeacher")
+    @OneToMany(mappedBy = "homeRoomTeacher", fetch = FetchType.EAGER)
     private Set<Student> homeRoomStudents;
+
+    public Teacher() { }
 
     public Teacher(String fname, String lname, Room homeRoom) {
         this.fname = fname;

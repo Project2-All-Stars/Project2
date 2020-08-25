@@ -23,6 +23,8 @@ public class Absence {
     @JoinColumn(name="excuse_id", referencedColumnName="eid", columnDefinition="int4")
     private Excuse excuse;
 
+    public Absence() { }
+
     public Absence(Student student, Date date){
         this.student = student;
         this.date = date;
