@@ -36,7 +36,7 @@ public abstract class GenericController<T> {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<T>> getAll(){
         List<T> t = dao.findAll();
-        return new ResponseEntity<List<T>>(t, t!=null ? HttpStatus.OK : HttpStatus.NOT_FOUND );
+        return new ResponseEntity<List<T>>(t, t!=null ? HttpStatus.OK : HttpStatus.I_AM_A_TEAPOT );
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

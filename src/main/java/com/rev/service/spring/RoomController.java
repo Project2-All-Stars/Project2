@@ -38,7 +38,7 @@ public class RoomController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Room>> getAll(){
         List<Room> t = dao.findAll();
-        return new ResponseEntity<List<Room>>(t, t!=null ? HttpStatus.OK : HttpStatus.NOT_FOUND );
+        return new ResponseEntity<List<Room>>(t, t!=null ? HttpStatus.OK : HttpStatus.I_AM_A_TEAPOT );
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
