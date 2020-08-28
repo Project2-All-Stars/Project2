@@ -21,33 +21,45 @@ public abstract class GenericController<T> {
     @Autowired
     private GenericRepository<T> dao;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "post", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Serializable> post(@RequestBody T t){
         Serializable id = dao.save(t);
         return new ResponseEntity<Serializable>(id, id!=null ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR );
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<T> get(@PathVariable Serializable id){
-        T t = dao.findById(id);
-        return new ResponseEntity<T>(t, t!=null ? HttpStatus.OK : HttpStatus.NOT_FOUND );
+    @GetMapping(path = "get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<T> get(@PathVariable String id){
+        T t;
+        try{ //try to parse the id as an int
+            t = dao.findById(Integer.parseInt(id));
+        }
+        catch (final NumberFormatException e){
+            t = dao.findById(id);
+        }
+        return new ResponseEntity<T>(t, t!=null ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR );
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "get", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<T>> getAll(){
         List<T> t = dao.findAll();
-        return new ResponseEntity<List<T>>(t, t!=null ? HttpStatus.OK : HttpStatus.I_AM_A_TEAPOT );
+        return new ResponseEntity<List<T>>(t, t!=null ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> put(@RequestBody T t){
+    @PutMapping(path = "put", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> put(@RequestBody T t){
         Boolean success = dao.update(t);
-        return new ResponseEntity<Boolean>(success, success ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR );
+        return new ResponseEntity<>(null, success ? HttpStatus.NO_CONTENT : HttpStatus.INTERNAL_SERVER_ERROR );
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Serializable id){
-        Boolean success = dao.deleteById(id);
-        return new ResponseEntity<Boolean>(success, success ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR );
+    @DeleteMapping(path = "delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        Boolean success;
+        try{ //try to parse the id as an int
+            success = dao.deleteById(Integer.parseInt(id));
+        }
+        catch (final NumberFormatException e){
+            success = dao.deleteById(id);
+        }
+        return new ResponseEntity<>(null, success ? HttpStatus.NO_CONTENT : HttpStatus.INTERNAL_SERVER_ERROR );
     }
 }

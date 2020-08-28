@@ -24,7 +24,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>dispatcherServlet </servlet-name>
+    <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
 </web-app>
