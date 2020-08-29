@@ -52,4 +52,4 @@ jobs:
         env: "StudentTrackingUtility-env"
         bucket_name: "elasticbeanstalk-us-east-1-56783090000"
         on:
-          branch: controller
+          branch: controllers
