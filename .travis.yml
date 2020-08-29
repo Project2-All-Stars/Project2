@@ -18,11 +18,11 @@ jobs:
       jdk: oraclejdk8
       git:
         clone: false
-      before_script:
-        - cd /
-        - cd  /home/travis/build/Project2-All-Stars/Project2Backend
+#      before_script:
+#        - cd /
+#        - cd  /home/travis/build/Project2-All-Stars/Project2Backend
       script:
-        - ls ./Project2Backend
+#        - ls ./Project2Backend
         - mvn package -DskipTests
         - ls
 
@@ -30,9 +30,9 @@ jobs:
       language: generic
       git:
         clone: false
-      before_script:
-        - cd /
-        - cd  /home/travis/build/Project2-All-Stars/Project2Backend
+#      before_script:
+#        - cd /
+#        - cd  /home/travis/build/Project2-All-Stars/Project2Backend
       services:
         - docker
       script:
@@ -51,5 +51,5 @@ jobs:
         app: "Student Tracking Utility"
         env: "StudentTrackingUtility-env"
         bucket_name: "elasticbeanstalk-us-east-1-56783090000"
-#        on:
-#          branch: master
+        on:
+          branch: master
