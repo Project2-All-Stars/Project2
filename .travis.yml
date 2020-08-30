@@ -19,9 +19,10 @@ jobs:
       git:
         clone: false
       before_script:
-        - cd ${TRAVIS_BUILD_DIR}
+#        - cd ${TRAVIS_BUILD_DIR}
 #        - cd /home/travis/build/Project2-All-Stars #/Project2Backend
       script:
+        - ls
 #        - ls ./Project2Backend
         - mvn package -DskipTests
         - ls
