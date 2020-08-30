@@ -1,0 +1,48 @@
+stages:
+  - api
+  - deployment
+
+dist: trusty
+sudo: required
+branches:
+  only:
+    - master
+jobs:
+  include:
+    - stage: api
+      language: java
+      jdk: oraclejdk8
+      workspaces:
+        create:
+          name: ws1
+          paths: /home/travis/build/
+      script:
+        - mvn package -DskipTests
+
+    - stage: deployment
+      language: generic
+      git:
+        clone: false
+      workspaces:
+        use: ws1
+      services:
+        - docker
+      script:
+        - cd Project2-All-Stars/Project2Backend
+        - ls
+        - docker build -t project2 .
+      after_success:
+        - docker images
+        - docker tag project2 proj2img/project2:latest
+        - docker push proj2img/project2:latest
+
+      deploy:
+        provider: elasticbeanstalk
+        access_key_id: $AWS_ACCESS_KEY_ID
+        secret_access_key: $AWS_SECRET_ACCESS_KEY
+        region: "us-east-1"
+        app: "Student Tracking Utility"
+        env: "StudentTrackingUtility-env"
+        bucket_name: "elasticbeanstalk-us-east-1-56783090000"
+        on:
+          branch: master
