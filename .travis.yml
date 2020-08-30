@@ -16,8 +16,8 @@ jobs:
     - stage: api
       language: java
       jdk: oraclejdk8
-      git:
-        clone: false
+#      git:
+#        clone: false
       before_script:
 #        - cd ${TRAVIS_BUILD_DIR}
 #        - cd /home/travis/build/Project2-All-Stars #/Project2Backend
