@@ -12,10 +12,9 @@ jobs:
     - stage: api
       language: java
       jdk: oraclejdk8
-#      git:
-#        clone: false
-      before_script:
-#        - cd ${TRAVIS_BUILD_DIR}
+      workspace:
+        create:
+          name: ws1
       script:
 #        - dir
 #        - cd ../builds
@@ -27,9 +26,7 @@ jobs:
       language: generic
       git:
         clone: false
-#      before_script:
-#        - cd /
-#        - cd  /home/travis/build/Project2-All-Stars/Project2Backend
+      workspace:
       services:
         - docker
       script:
