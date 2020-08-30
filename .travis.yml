@@ -28,7 +28,7 @@ jobs:
       services:
         - docker
       script:
-        - cd Project2-All-Stars
+        - cd Project2-All-Stars/Project2Backend
         - ls
         - docker build -t project2 .
       after_success:
