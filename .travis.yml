@@ -15,6 +15,7 @@ jobs:
       workspaces:
         create:
           name: ws1
+          paths: /home/travis/build/
       script:
         - mvn package -DskipTests
 
