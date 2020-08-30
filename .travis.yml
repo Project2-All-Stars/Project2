@@ -24,7 +24,7 @@ jobs:
       script:
         - ls
 #        - ls ./Project2Backend
-        - mvn package -DskipTests
+#        - mvn package -DskipTests
         - ls
 
     - stage: deployment
