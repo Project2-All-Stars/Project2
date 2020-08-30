@@ -12,21 +12,17 @@ jobs:
     - stage: api
       language: java
       jdk: oraclejdk8
-      workspace:
+      workspaces:
         create:
           name: ws1
       script:
-#        - dir
-#        - cd ../builds
-#        - ls ./Project2Backend
         - mvn package -DskipTests
-        - ls
 
     - stage: deployment
       language: generic
       git:
         clone: false
-      workspace:
+      workspaces:
         use: ws1
       services:
         - docker
