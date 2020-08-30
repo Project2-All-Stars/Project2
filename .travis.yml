@@ -27,6 +27,7 @@ jobs:
       git:
         clone: false
       workspace:
+        use: ws1
       services:
         - docker
       script:
