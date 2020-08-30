@@ -1,5 +1,7 @@
 package com.rev.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,6 +20,7 @@ public class Student {
     @Column(nullable = false)
     private String lname;
 
+    @JsonIgnore
     @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="teacher_id", referencedColumnName="tid", columnDefinition="int4")
     private Teacher homeRoomTeacher;

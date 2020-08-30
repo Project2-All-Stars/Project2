@@ -1,5 +1,7 @@
 package com.rev.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Room {
 
     private String rname;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "homeRoom")
     private Teacher teacher;
 
