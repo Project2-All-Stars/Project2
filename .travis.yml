@@ -22,7 +22,8 @@ jobs:
 #        - cd ${TRAVIS_BUILD_DIR}
 #        - cd /home/travis/build/Project2-All-Stars #/Project2Backend
       script:
-        - cd ..
+        - dir
+        - cd ../builds
 #        - ls ./Project2Backend
 #        - mvn package -DskipTests
         - ls
@@ -38,7 +39,7 @@ jobs:
         - docker
       script:
         - ls
-        - docker build -t project2 ./api
+        - docker build -t project2 .
       after_success:
         - docker images
         - docker tag project2 proj2img/project2:latest
