@@ -22,7 +22,7 @@ jobs:
 #        - cd ${TRAVIS_BUILD_DIR}
 #        - cd /home/travis/build/Project2-All-Stars #/Project2Backend
       script:
-        - ls
+        - cd ..
 #        - ls ./Project2Backend
 #        - mvn package -DskipTests
         - ls
