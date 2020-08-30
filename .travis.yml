@@ -29,7 +29,7 @@ jobs:
         - docker
       script:
         - ls
-        - docker build -t project2 .
+        - docker build -t project2 ./Project2-All-Stars
       after_success:
         - docker images
         - docker tag project2 proj2img/project2:latest
