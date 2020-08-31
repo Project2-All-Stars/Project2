@@ -21,7 +21,6 @@ public class Absence {
     @Column(nullable = false)
     private Date date;
 
-    @JsonIgnore
     @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="excuse_id", referencedColumnName="eid", columnDefinition="int4")
     private Excuse excuse;

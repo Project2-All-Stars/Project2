@@ -68,10 +68,12 @@ public class Teacher {
         this.homeRoom = homeRoom;
     }
 
+    @JsonIgnore
     public Set<Student> getStudents() {
         return homeRoomStudents;
     }
 
+    @JsonIgnore
     public void setStudents(Set<Student> homeRoomStudents) {
         this.homeRoomStudents = homeRoomStudents;
     }

@@ -20,7 +20,6 @@ public class Student {
     @Column(nullable = false)
     private String lname;
 
-    @JsonIgnore
     @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="teacher_id", referencedColumnName="tid", columnDefinition="int4")
     private Teacher homeRoomTeacher;
@@ -101,10 +100,12 @@ public class Student {
         this.grade = grade;
     }
 
+    @JsonIgnore
     public Set<Absence> getAbsences() {
         return absences;
     }
 
+    @JsonIgnore
     public void setAbsences(Set<Absence> absences) {
         this.absences = absences;
     }
