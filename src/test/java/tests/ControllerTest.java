@@ -179,6 +179,7 @@ public class ControllerTest {
         }
     }
 
+    //tests @JsonIgnore
     @Test
     public void postGetRoom(){
         try {
@@ -192,7 +193,7 @@ public class ControllerTest {
             String id = result.getResponse().getContentAsString();
 
             //get
-            ResultActions sigh = mockMvc.perform(get("/room/get/"+id))
+            mockMvc.perform(get("/room/get/"+id))
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
         }
