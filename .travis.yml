@@ -38,8 +38,10 @@ jobs:
 
       deploy:
         provider: elasticbeanstalk
-        access_key_id: $AWS_ACCESS_KEY_ID
-        secret_access_key: $AWS_SECRET_ACCESS_KEY
+        access_key_id: 
+          secure: $AWS_ACCESS_KEY_ID
+        secret_access_key: 
+          secure: $AWS_SECRET_ACCESS_KEY
         region: "us-east-1"
         app: "Student Tracking Utility"
         env: "StudentTrackingUtility-env"
