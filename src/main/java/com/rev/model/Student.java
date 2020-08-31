@@ -76,10 +76,12 @@ public class Student {
         this.lname = lname;
     }
 
+    @JsonIgnore
     public Teacher getHomeRoomTeacher() {
         return homeRoomTeacher;
     }
 
+    @JsonIgnore
     public void setHomeRoomTeacher(Teacher homeRoomTeacher) {
         this.homeRoomTeacher = homeRoomTeacher;
     }
