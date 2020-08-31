@@ -49,10 +49,6 @@ public class Room {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-
-//    public int getNumSeats(){
-//        return teacher.getStudents().size();
-//    }
     //endregion
 
     @Override
