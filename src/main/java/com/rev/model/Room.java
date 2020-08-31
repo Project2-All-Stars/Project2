@@ -47,9 +47,9 @@ public class Room {
         this.teacher = teacher;
     }
 
-    public int getNumSeats(){
-        return teacher.getStudents().size();
-    }
+//    public int getNumSeats(){
+//        return teacher.getStudents().size();
+//    }
     //endregion
 
     @Override
