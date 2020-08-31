@@ -15,9 +15,9 @@ public class Room {
 
     private String rname;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "homeRoom")
-    private Teacher teacher;
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "homeRoom")
+//    private Teacher teacher;
 
     public Room() { }
 
@@ -42,13 +42,13 @@ public class Room {
         this.rname = rname;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
+//    public Teacher getTeacher() {
+//        return teacher;
+//    }
+//
+//    public void setTeacher(Teacher teacher) {
+//        this.teacher = teacher;
+//    }
     //endregion
 
     @Override
@@ -56,7 +56,7 @@ public class Room {
         return "Room{" +
                 "rid=" + rid +
                 ", rname='" + rname + '\'' +
-                ", teacher=" + teacher.getId() +
+//                ", teacher=" + teacher.getId() +
                 '}';
     }
 }

@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -171,6 +173,28 @@ public class ControllerTest {
             //fail delete
             mockMvc.perform(delete("/excuse/delete/"+id))
                     .andExpect(status().isInternalServerError());
+        }
+        catch (Exception e){
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void postGetRoom(){
+        try {
+            //post
+            MvcResult result = mockMvc.perform(post("/room/post")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(om.writeValueAsString(new Room("Computer lab"))))
+                    .andExpect(status().isCreated())
+                    .andReturn();
+
+            String id = result.getResponse().getContentAsString();
+
+            //get
+            ResultActions sigh = mockMvc.perform(get("/room/get/"+id))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
         }
         catch (Exception e){
             Assert.fail(e.getMessage());
