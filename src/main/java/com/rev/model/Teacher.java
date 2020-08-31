@@ -60,10 +60,12 @@ public class Teacher {
         this.lname = lname;
     }
 
+    @JsonIgnore
     public Room getHomeRoom() {
         return homeRoom;
     }
 
+    @JsonIgnore
     public void setHomeRoom(Room homeRoom) {
         this.homeRoom = homeRoom;
     }
