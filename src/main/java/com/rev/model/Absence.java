@@ -47,12 +47,10 @@ public class Absence {
         this.aid = aid;
     }
 
-    @JsonIgnore
     public Student getStudent() {
         return student;
     }
 
-    @JsonIgnore
     public void setStudent(Student student) {
         this.student = student;
     }
@@ -65,12 +63,10 @@ public class Absence {
         this.date = date;
     }
 
-    @JsonIgnore
     public Excuse getExcuse() {
         return excuse;
     }
 
-    @JsonIgnore
     public void setExcuse(Excuse excuse) {
         this.excuse = excuse;
     }
